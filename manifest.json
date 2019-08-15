@@ -1,0 +1,35 @@
+﻿{
+    // 清单文件的版本，这个必须写，而且必须是2
+    "manifest_version": 2,
+    // 插件的名称
+    "name": "ppkao2.0",
+    // 插件的版本
+    "version": "1.1.1",
+    // 插件描述
+    "description": "简单的Chrome扩展demo，会给你很多很多惊喜",
+    // 图标，一般偷懒全部用一个尺寸的也没问题
+    // 会一直常驻的后台JS或后台页面
+    "background": {
+        // 2种指定方式，如果指定JS，那么会自动生成一个背景页
+        "page": "background.html"
+        //"scripts": ["js/background.js"]
+    },
+    // 需要直接注入页面的JS
+    "content_scripts": [
+        {
+            "matches": ["https://www.ppkao.com/*"],
+            // "<all_urls>" 表示匹配所有地址
+            // "matches": [
+            //     "<all_urls>"
+            // ],
+            // 多个JS按顺序注入
+            "js": [
+                "js/content-script.js"
+            ],
+            // JS的注入可以随便一点，但是CSS的注意就要千万小心了，因为一不小心就可能影响全局样式
+            // "css": [
+            //     "css/custom.css"
+            // ],
+            // 代码注入的时间，可选值： "document_start", "document_end", or "document_idle"，最后一个表示页面空闲时，默认document_idle
+            "run_at": "document_idle"
+        }]}
